@@ -1,0 +1,23 @@
+{
+    "name": "crt0/mag2whats",
+    "description": "Seamless WhatsApp Order Notifications for Magento 2",
+    "type": "magento2-module",
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "CRT0\\Mag2Whats\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Bruno Alves",
+            "email": "boteistem@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1"
+    }
+}
