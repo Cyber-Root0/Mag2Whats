@@ -21,12 +21,43 @@
                     <comment>Select the gateway to send messages</comment>
                 </field>
             </group>
-            <group id="messages" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Custom Notifications</label>
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Module Enable</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <group id="gateway" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Gateway Configuration</label>
+                 <!-- Evolution Gateway Config -->
+                <field id="evolution_baseurl" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Evolution API base URL</label>
+                    <validate>required-entry validate-url</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">evolution.api</field>
+                    </depends>
                 </field>
+                <field id="evolution_token" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Evolution API Token</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">evolution.api</field>
+                    </depends>
+                </field>
+                 <!-- End Evolution Gateway Config -->
+                 <!-- Twilio Gateway Config -->
+                <field id="twilio_sid" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Account SID</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">twilio.gateway</field>
+                    </depends>
+                </field>
+                <field id="twilio_token" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Account Token</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">twilio.gateway</field>
+                    </depends>
+                </field>
+                <!-- End Twilio Gateway Config -->
+                <depends>
+                        <field id="mag2whats/general/enable">1</field>
+                </depends>
             </group>
         </section>
     </system>
