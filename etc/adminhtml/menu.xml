@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CRT0_Mag2Whats::menu"
+            title="Mag2Whats"
+            module="CRT0_Mag2Whats"
+            sortOrder="100"
+            resource="CRT0_Mag2Whats::menu" />
+        <add id="CRT0_Mag2Whats::item"
+            title="Mensagens Personalizadas de Pedido"
+            module="CRT0_Mag2Whats"
+            sortOrder="100"
+            action="mag2whats/states"
+            parent="CRT0_Mag2Whats::menu"
+            resource="CRT0_Mag2Whats::item" />
+    </menu>
+</config>
