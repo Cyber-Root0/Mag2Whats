@@ -1,0 +1,10 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <!-- Alterado para mag2whats_form_state -->
+            <item name="provider" xsi:type="string">mag2whats_form_state.settings_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Custom Settings</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+</form>
