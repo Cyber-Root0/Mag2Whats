@@ -16,7 +16,7 @@ use Magento\Ui\DataProvider\AbstractDataProvider;
 use Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory;
 class GridStateProvider extends AbstractDataProvider
 {
-    protected $collection;    
+    protected $collection;
     /**
      * __construct
      *
@@ -24,7 +24,7 @@ class GridStateProvider extends AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param array $meta 
+     * @param array $meta
      * @param array $data
      * @return void
      */
@@ -38,7 +38,7 @@ class GridStateProvider extends AbstractDataProvider
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
         $this->collection = $this->collectionFactory->create();
-    }    
+    }
     /**
      * getData
      *
@@ -51,7 +51,7 @@ class GridStateProvider extends AbstractDataProvider
             'items' => $data,
             'totalRecords' => count($data)
         ];
-    }    
+    }
     /**
      * getAllState
      *
@@ -70,5 +70,5 @@ class GridStateProvider extends AbstractDataProvider
         }
         return $states;
     }
-    
+
 }

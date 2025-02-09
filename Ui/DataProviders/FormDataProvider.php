@@ -24,7 +24,7 @@ class FormDataProvider extends AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param array $meta 
+     * @param array $meta
      * @param array $data
      * @return void
      */
