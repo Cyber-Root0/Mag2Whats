@@ -1,7 +1,7 @@
 <?php
 
 namespace CRT0\Mag2Whats\Model;
-
+use CRT0\Mag2Whats\Model\ResourceModel\Message as ResourceMessage;
 use CRT0\Mag2Whats\Api\Data\MessageInterface;
 use Magento\Framework\Model\AbstractModel;
 
@@ -9,31 +9,59 @@ class Message extends AbstractModel implements MessageInterface
 {
     protected function _construct()
     {
-        $this->_init(\CRT0\Mag2Whats\Model\ResourceModel\Message::class);
+        $this->_init(ResourceMessage::class);
     }
 
-    public function getId()
+    public function getId() : int
     {
-        return $this->getData(self::ID);
+        return (int) $this->getData(self::ID);
     }
 
-    public function getMessageText()
+    public function getMessageText(): string
     {
         return $this->getData(self::MESSAGE_TEXT);
     }
 
-    public function setMessageText($messageText)
+    public function setMessageText(string $messageText): MessageInterface
     {
-        return $this->setData(self::MESSAGE_TEXT, $messageText);
+        $this->setData(self::MESSAGE_TEXT, $messageText);
+        return $this;
     }
 
-    public function getIsActive()
+    public function getIsActive(): bool
     {
-        return $this->getData(self::IS_ACTIVE);
+        return (bool) $this->getData(self::IS_ACTIVE);
     }
-
-    public function setIsActive($isActive)
+    
+    /**
+     * setIsActive
+     *
+     * @param  mixed $isActive
+     * @return MessageInterface
+     */
+    public function setIsActive(bool $isActive): MessageInterface
     {
-        return $this->setData(self::IS_ACTIVE, $isActive);
+        $this->setData(self::IS_ACTIVE, $isActive);
+        return $this;
+    }    
+    /**
+     * getStatus
+     *
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->getData(self::STATUS);
+    }    
+    /**
+     * setStatus
+     *
+     * @param string $status
+     * @return MessageInterface
+     */
+    public function setStatus(string $status): MessageInterface
+    {
+        $this->setData(self::STATUS, $status);
+        return $this;
     }
 }

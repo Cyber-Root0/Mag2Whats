@@ -1,32 +1,30 @@
-<?xml version="1.0"?>
-<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <dataSource name="message_form_data_source">
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mag2whats_form_state.settings_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Custom Settings</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <dataSource name="settings_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">CRT0\Mag2Whats\Ui\DataProviders\FormDataProvider</argument>
-            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="name" xsi:type="string">settings_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">status</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
         </argument>
+         <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
     </dataSource>
-
-    <fieldset name="general">
-        <field name="state">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">State</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                </item>
-            </argument>
-        </field>
-        <field name="status">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Status</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                </item>
-            </argument>
-        </field>
+    <fieldset name="dynamic_fieldset" class="CRT0\Mag2Whats\Ui\Form\Fieldset\Fields">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Message</item>
+                <item name="sortOrder" xsi:type="number">1000</item>
+            </item>
+        </argument>
     </fieldset>
 </form>

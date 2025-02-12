@@ -12,8 +12,8 @@
  * @since     2025
  */
 namespace CRT0\Mag2Whats\Ui\DataProviders;
+use CRT0\Mag2Whats\Model\ResourceModel\Message\CollectionFactory;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory;
 class FormDataProvider extends AbstractDataProvider
 {
     protected $collection;
@@ -46,11 +46,6 @@ class FormDataProvider extends AbstractDataProvider
      */
     public function getData(): array
     {
-        $data = [];
-        $data[''] = [
-            'is_active' => 0,
-            'message' => 'Mensagem padrão'
-        ];
-        return $data;
+        return [];
     }
 }
