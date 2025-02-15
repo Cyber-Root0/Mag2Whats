@@ -5,18 +5,12 @@ use CRT0\Mag2Whats\Model\ResourceModel\Message as ResourceMessage;
 use CRT0\Mag2Whats\Api\Data\MessageInterface;
 use Magento\Framework\Model\AbstractModel;
 
-class Message extends AbstractModel implements MessageInterface
+class MessageModel extends AbstractModel implements MessageInterface
 {
     protected function _construct()
     {
         $this->_init(ResourceMessage::class);
     }
-
-    public function getId() : int
-    {
-        return (int) $this->getData(self::ID);
-    }
-
     public function getMessageText(): string
     {
         return $this->getData(self::MESSAGE_TEXT);

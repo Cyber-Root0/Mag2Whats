@@ -15,69 +15,97 @@ class Fields extends MagFieldset
         FieldFactory $fieldFactory,
         array $components = [],
         array $data = []
-        )
-    {
+    ) {
         parent::__construct($context, $components, $data);
         $this->fieldFactory = $fieldFactory;
     }
     public function getChildComponents()
-    {   
-        $formData = $this->getSatusMessage();
-        $this->prepareComponents($formData);
+    {
+        if (empty($this->getComponents())) {
+            $formData = $this->getSatusMessage();
+            $this->prepareComponents($formData);
+        }
         return parent::getChildComponents();
-    }    
+    }
     /**
      * getStatusId
      *
      * @return string
      */
-    private function getStatusId(): string{
+    private function getStatusId(): string
+    {
         $id = $this->request->getParam('id') ?? false;
         if ($id) {
             return $id;
         }
 
         return "";
-    }    
+    }
     /**
      * getSatusMessage
      *
      * @return array
      */
-    private function getSatusMessage(): array{
+    private function getSatusMessage(): array
+    {
         $status = $this->getStatusId();
         $message = $this->messageManager->getMessageByStatus($status);
-        if ($message){
-            return $message->getData();
+        if ($message) {
+            $data = $message->getData();
+            return $data;
         }
         return [
             'message' => '',
-            'is_active' => 0
+            'is_active' => 0,
+            'status' => $status,
+            'id' => ''
         ];
-    }    
+    }
     /**
      * prepareComponents
      *
      * @param array $formData
      * @return void
      */
-    private function prepareComponents(array $formData){
+    private function prepareComponents(array $formData)
+    {
         $fields = [
-            [
-                'label' => __('Active'),
-                'checked' => (bool) $formData['is_active'],
-                'formElement' => 'checkbox',
-                'prefer' => 'toggle'
-            ],
-            [
+            'message' => [
                 'label' => __('Message'),
+                'visible' => true,
+                'dataType' => 'text',
                 'value' => $formData['message'],
                 'formElement' => 'textarea',
-            ]
+                'source' => 'mag2whats_form_fieldset',
+                'dataScope' => 'message',
+                'componentType' => 'field',
+                'validation' => ['required-entry' => true],
+            ],
+            'status' => [
+                'label' => __('Status'),
+                'visible' => true,
+                'dataType' => 'text',
+                'value' => $formData['status'],
+                'formElement' => 'input',
+                'source' => 'mag2whats_form_fieldset',
+                'dataScope' => 'status',
+                'componentType' => 'field'
+            ],
+            'id' => [
+                'label' => __('ID'),
+                'visible' => true,
+                'dataType' => 'text',
+                'value' => $formData['id'],
+                'formElement' => 'input',
+                'source' => 'mag2whats_form_fieldset',
+                'dataScope' => 'id',
+                'componentType' => 'field'
+            ],
         ];
+
         foreach ($fields as $key => $field) {
             $fieldInstance = $this->fieldFactory->create();
-            $name = 'custom_field_' . $key;
+            $name = $key;
             $fieldInstance->setData(
                 [
                     'config' => $field,

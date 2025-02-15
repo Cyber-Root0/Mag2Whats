@@ -13,14 +13,14 @@
  */
 namespace CRT0\Mag2Whats\Service;
 use CRT0\Mag2Whats\Model\ResourceModel\Message\CollectionFactory;
-use CRT0\Mag2Whats\Model\Message;
+use CRT0\Mag2Whats\Model\MessageModel;
 class MessageManager
 {
     public function __construct(
         protected CollectionFactory $messageCollection
     ){
     }
-    public function getMessageByStatus(string $status): Message | false{
+    public function getMessageByStatus(string $status): MessageModel | false{
         $collection = $this->messageCollection->create();
         return $collection->getByStatus($status);
     }

@@ -1,0 +1,15 @@
+input[name="mag2whats_form_fieldset[status]"] {
+    display: none!important;
+}
+input[name="mag2whats_form_fieldset[id]"] {
+    display: none!important;
+}
+div[data-index="mag2whats_form_fieldset"] .mag2whats_form_fieldset .mag2whats_form_hidecontent {
+    display: none!important;
+}
+div[data-index="mag2whats_form_fieldset"] div[data-index="status"]{
+display: none;
+}
+div[data-index="mag2whats_form_fieldset"] div[data-index="id"]{
+display: none;
+}

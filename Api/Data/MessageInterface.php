@@ -2,21 +2,9 @@
 namespace CRT0\Mag2Whats\Api\Data;
 interface MessageInterface
 {
-    const ID = 'id';
     const MESSAGE_TEXT = 'message';
     const IS_ACTIVE = 'is_active';
     const STATUS = "status";    
-    /**
-     * getId
-     *
-     * @return int
-     */
-    public function getId() : int;    
-    /**
-     * getMessageText
-     *
-     * @return string
-     */
     public function getMessageText() : string;    
     /**
      * setMessageText

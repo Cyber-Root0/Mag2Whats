@@ -46,6 +46,17 @@ class FormDataProvider extends AbstractDataProvider
      */
     public function getData(): array
     {
-        return [];
+        if (isset($this->loadedData)) {
+            return $this->loadedData;
+        }
+
+        $items = $this->collection->getItems();
+        $this->loadedData = [];
+        foreach ($items as $i) {
+            $data = $i->getData();
+            $this->loadedData[$i->getStatus()]['mag2whats_form_fieldset'] = $data;
+        }
+
+        return $this->loadedData;
     }
 }
