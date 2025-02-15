@@ -12,9 +12,9 @@
  * @since     2025
  */
 namespace CRT0\Mag2Whats\Ui\DataProviders;
+use CRT0\Mag2Whats\Model\ResourceModel\Message\CollectionFactory;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Magento\Sales\Model\ResourceModel\Order\Status\CollectionFactory;
-class GridStateProvider extends AbstractDataProvider
+class FormDataProvider extends AbstractDataProvider
 {
     protected $collection;
     /**
@@ -46,29 +46,17 @@ class GridStateProvider extends AbstractDataProvider
      */
     public function getData(): array
     {
-        $data = $this->getAllState();
-        return [
-            'items' => $data,
-            'totalRecords' => count($data)
-        ];
-    }
-    /**
-     * getAllState
-     *
-     * @return array
-     */
-    public function getAllState() : array
-    {
-        $this->collection->joinStates();
-        $states = [];
-        foreach ($this->collection as $status) {
-            $states[] = [
-                'status' => $status->getStatus(),
-                'state' => $status->getState(),
-                'label' => $status->getLabel()
-            ];
+        if (isset($this->loadedData)) {
+            return $this->loadedData;
         }
-        return $states;
-    }
 
+        $items = $this->collection->getItems();
+        $this->loadedData = [];
+        foreach ($items as $i) {
+            $data = $i->getData();
+            $this->loadedData[$i->getStatus()]['mag2whats_form_fieldset'] = $data;
+        }
+
+        return $this->loadedData;
+    }
 }
