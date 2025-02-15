@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <css src="CRT0_Mag2Whats::css/mag2whatsform.css"/>
+  </head>
+  <body>
+    <referenceContainer name="content">
+      <uiComponent name="mag2whats_form" />
+    </referenceContainer>
+  </body>
+</page>
