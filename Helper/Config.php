@@ -12,7 +12,53 @@
  * @since     2025
  */
 namespace CRT0\Mag2Whats\Helper;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use CRT0\Mag2Whats\Helper\GatewayFactory;
 class Config
 {
+    protected $configPrefix = "general";
     public const MODULE_ID = "CRT0_Mag2Whats";
+    public function __construct(
+        protected ScopeConfigInterface $scopeConfig,
+        protected GatewayFactoryFactory $gatewayFactory
+    )
+    {
+    }    
+    /**
+     * isActiveModule
+     *
+     * @return bool
+     */
+    public function isActiveModule(): bool{
+        return (bool) $this->getData("enable");
+    }    
+    /**
+     * getCurrentGateway
+     *
+     * @return string
+     */
+    public function getCurrentGateway(): string
+    {
+        return $this->getData("gateway");
+    }    
+    /**
+     * getData
+     *
+     * @param string $paramName
+     * @return mixed
+     */
+    protected function getData(string $paramName){
+        return $this->scopeConfig->getValue(sprintf("mag2whats/%s/%s", $this->configPrefix, $paramName));
+    }    
+    /**
+     * getGatewayConfig
+     *
+     * @param string $gatewayCode
+     * @return array
+     */
+    public function getGatewayConfig(string $gatewayCode) : array
+    {
+        $gateway = $this->gatewayFactory->create()->create($gatewayCode);
+        return $gateway->getConfig();
+    }
 }

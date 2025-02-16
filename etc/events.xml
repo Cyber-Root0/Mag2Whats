@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_save_after">
+        <observer name="crt0_mag2whats_order_status_change" instance="CRT0\Mag2Whats\Observer\OrderStatusChangeObserver"/>
+    </event>
+</config>
