@@ -12,10 +12,7 @@
  * @since     2025
  */
 namespace CRT0\Mag2Whats\Api\Data;
-use Magento\Framework\HTTP\Client\Curl;
-use CRT0\Mag2Whats\Api\Data\GatewayDataInterface;
-interface GatewayInterface
+interface GatewayDataInterface
 {
-    public function __construct(GatewayDataInterface $gatewayData);
-    public function sendMessage(Curl $client, string $number, string $message): bool;
+    public function getConfig() : array;
 }

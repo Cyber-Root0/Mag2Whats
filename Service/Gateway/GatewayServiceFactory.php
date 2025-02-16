@@ -11,34 +11,27 @@
  * @version   1.0.0
  * @since     2025
  */
-namespace CRT0\Mag2Whats\Helper;
+namespace CRT0\Mag2Whats\Service\Gateway;
 use Magento\Framework\ObjectManagerInterface;
-use CRT0\Mag2Whats\Api\Data\GatewayDataInterface;
-use CRT0\Mag2Whats\Helper\Gateway\Evolution;
-use CRT0\Mag2Whats\Helper\Gateway\Twillio;
-class GatewayFactory
-{    
-    /**
-     * __construct
-     *
-     * @return void
-     */
+use CRT0\Mag2Whats\Api\Data\GatewayInterface;
+use CRT0\Mag2Whats\Service\Gateway\EvolutionGateway;
+class GatewayServiceFactory
+{
     public function __construct(
         protected ObjectManagerInterface $objectManager
     )
     {
-    }    
+    }
     /**
      * create
      *
      * @param string $gatewayCode
-     * @return GatewayDataInterface
+     * @return GatewayInterface
      */
-    public function create($gatewayCode): GatewayDataInterface
+    public function create($gatewayCode): GatewayInterface
     {
         $gatewayClass = match ($gatewayCode) {
-            'evolution.api' => Evolution::class,
-            'twilio.gateway' => Twillio::class,
+            'evolution.api' => EvolutionGateway::class,
             default => ''
         };
         return $this->objectManager->create($gatewayClass);

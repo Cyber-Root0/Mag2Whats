@@ -13,7 +13,7 @@
  */
 namespace CRT0\Mag2Whats\Helper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use CRT0\Mag2Whats\Helper\GatewayFactory;
+use CRT0\Mag2Whats\Helper\GatewayFactoryFactory;
 class Config
 {
     protected $configPrefix = "general";

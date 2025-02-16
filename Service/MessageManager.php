@@ -13,13 +13,15 @@
  */
 namespace CRT0\Mag2Whats\Service;
 use CRT0\Mag2Whats\Model\ResourceModel\Message\CollectionFactory;
+use CRT0\Mag2Whats\Service\Gateway\GatewayService;
 use CRT0\Mag2Whats\Model\MessageModel;
 use CRT0\Mag2Whats\Helper\Config;
 class MessageManager
 {
     public function __construct(
         protected CollectionFactory $messageCollection,
-        protected Config $config
+        protected Config $config,
+        protected GatewayService $gatewayService
     ) {
     }
     /**
@@ -34,7 +36,7 @@ class MessageManager
             $number = $this->extractNumber($order);
             $messageTosend = $this->getMessage($order->getData('status'));
             $gateway = $this->config->getCurrentGateway();
-            var_dump([$number, $messageTosend]);
+            $this->gatewayService->execute($number, $messageTosend, $gateway);
         }
     }
     /**
@@ -76,6 +78,10 @@ class MessageManager
         if (!$this->hasCustomMessage($status)) {
             return false;
         }
+        $number = $this->extractNumber($order);
+        if (!$number || empty($number)) {
+            return false;
+        }
         return true;
     }
     /**
@@ -103,12 +109,16 @@ class MessageManager
      */
     private function extractNumber($order): string|false
     {
-        $billingAddress = $order->getBillingAddress();
-        if (!$billingAddress) {
+        try {
+            $billingAddress = $order->getBillingAddress();
+            if (!$billingAddress) {
+                return false;
+            }
+            $phoneNumber = $billingAddress->getTelephone();
+            $phoneNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
+            return !empty($phoneNumber) ? $phoneNumber : false;
+        }catch(\Exception $e){
             return false;
         }
-        $phoneNumber = $billingAddress->getTelephone();
-        $phoneNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
-        return !empty($phoneNumber) ? $phoneNumber : false;
     }
 }
