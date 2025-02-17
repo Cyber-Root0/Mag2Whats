@@ -1,5 +1,21 @@
 <?xml version="1.0"?>
+<!-- 
+    Copyright (c) 2025 Bruno Alves. All rights reserved.
+
+    This file is part of the CRT0 Mag2Whats module for Magento 2.
+
+    @package   CRT0_Mag2Whats
+    @author    Bruno Alves <boteistem@gmail.com>
+    @license   MIT
+    @link      https://github.com/Cyber-Root0
+    @version   1.0.0
+    @since     2025
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="CRT0_Mag2Whats" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Backend"/>
+            <module name="Magento_Ui"/>
+        </sequence>
     </module>
 </config>

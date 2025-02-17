@@ -1,0 +1,66 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <!-- 
+    Copyright (c) 2025 Bruno Alves. All rights reserved.
+
+    This file is part of the CRT0 Mag2Whats module for Magento 2.
+
+    @package   CRT0_Mag2Whats
+    @author    Bruno Alves <boteistem@gmail.com>
+    @license   MIT
+    @link      https://github.com/Cyber-Root0
+    @version   1.0.0
+    @since     2025
+    -->
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mag2whats_form.settings_data_source</item>
+            <item name="deps" xsi:type="string">mag2whats_form.settings_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Custom Settings</item>
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">CRT0\Mag2Whats\Ui\Form\Buttons\BackButton</item>
+            <item name="save" xsi:type="string">CRT0\Mag2Whats\Ui\Form\Buttons\SaveButton</item>
+        </item>
+    </argument>
+    <dataSource name="settings_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">CRT0\Mag2Whats\Ui\DataProviders\FormDataProvider</argument>
+            <argument name="name" xsi:type="string">settings_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">status</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+                <item name="submit_url" path="*/*/save" xsi:type="url"/>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="mag2whats_form_fieldset" class="CRT0\Mag2Whats\Ui\Form\Fieldset\Fields" additionalClasses="mag2whats_form_fieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Edit Message</item>
+                <item name="sortOrder" xsi:type="number">1000</item>
+            </item>
+        </argument>
+        <field name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Active</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="source" xsi:type="string">mag2whats_form_fieldset</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

@@ -15,6 +15,10 @@
         {
             "name": "Bruno Alves",
             "email": "boteistem@gmail.com"
+        },
+        {
+            "name": "Referson Prado",
+            "email": "prado.referson@gmail.com"
         }
     ],
     "require": {

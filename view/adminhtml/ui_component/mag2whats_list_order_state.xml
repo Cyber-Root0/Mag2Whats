@@ -1,0 +1,83 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <!-- 
+    Copyright (c) 2025 Bruno Alves. All rights reserved.
+
+    This file is part of the CRT0 Mag2Whats module for Magento 2.
+
+    @package   CRT0_Mag2Whats
+    @author    Bruno Alves <boteistem@gmail.com>
+    @license   MIT
+    @link      https://github.com/Cyber-Root0
+    @version   1.0.0
+    @since     2025
+    -->
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mag2whats_list_order_state.mag2whats_list_order_state_data_source</item>
+        </item>
+    </argument>
+    <settings>
+		<spinner>crt0_mag2whats_statelist_columns</spinner>
+		<deps>
+			<dep>mag2whats_list_order_state.mag2whats_list_order_state_data_source</dep>
+		</deps>
+	</settings>
+    <dataSource name="mag2whats_list_order_state_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <filterUrlParams>
+                <param name="status">processing</param>
+            </filterUrlParams>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">status</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="CRT0\Mag2Whats\Ui\DataProviders\GridStateProvider" name="mag2whats_list_order_state_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>status</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters" />
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+    </listingToolbar>
+    <columns name="crt0_mag2whats_statelist_columns">
+        <column name="state">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">CRT0\Mag2Whats\Model\Config\Source\StateOptions</item>
+                <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">State</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </column>
+        <column name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </column>
+        <column name="label">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Label</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="CRT0\Mag2Whats\Ui\Listing\Column\Actions">
+            <settings>
+                <label translate="true">Actions</label>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

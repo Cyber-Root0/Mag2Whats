@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <!-- 
+    Copyright (c) 2025 Bruno Alves. All rights reserved.
+
+    This file is part of the CRT0 Mag2Whats module for Magento 2.
+
+    @package   CRT0_Mag2Whats
+    @author    Bruno Alves <boteistem@gmail.com>
+    @license   MIT
+    @link      https://github.com/Cyber-Root0
+    @version   1.0.0
+    @since     2025
+    -->
     <system>
         <section id="mag2whats" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
@@ -21,12 +33,50 @@
                     <comment>Select the gateway to send messages</comment>
                 </field>
             </group>
-            <group id="messages" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Custom Notifications</label>
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Module Enable</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <group id="gateway" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Gateway Configuration</label>
+                 <!-- Evolution Gateway Config -->
+                <field id="evolution_baseurl" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Evolution API base URL</label>
+                    <validate>required-entry validate-url</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">evolution.api</field>
+                    </depends>
                 </field>
+                <field id="evolution_token" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Evolution API Token</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">evolution.api</field>
+                    </depends>
+                </field>
+                <field id="evolution_instance" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Evolution WhatsApp Instance</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">evolution.api</field>
+                    </depends>
+                </field>
+                 <!-- End Evolution Gateway Config -->
+                 <!-- Twilio Gateway Config -->
+                <field id="twilio_sid" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Account SID</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">twilio.gateway</field>
+                    </depends>
+                </field>
+                <field id="twilio_token" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enter the Account Token</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="mag2whats/general/gateway">twilio.gateway</field>
+                    </depends>
+                </field>
+                <!-- End Twilio Gateway Config -->
+                <depends>
+                        <field id="mag2whats/general/enable">1</field>
+                </depends>
             </group>
         </section>
     </system>
