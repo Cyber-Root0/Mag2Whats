@@ -22,8 +22,8 @@ abstract class AbstractGatewayService implements GatewayInterface
     {
     }
     abstract function sendMessage(Curl $client, string $number, string $message): bool;
-    public function getData() : array
+    public function getData(string $configName) : string
     {
-        return $this->gatewayData->getConfig();
+        return $this->gatewayData->getConfig()[$configName];
     }
 }
