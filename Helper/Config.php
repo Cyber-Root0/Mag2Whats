@@ -14,16 +14,18 @@
 namespace CRT0\Mag2Whats\Helper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use CRT0\Mag2Whats\Helper\GatewayFactoryFactory;
+use Magento\Framework\Encryption\EncryptorInterface;
 class Config
 {
     protected $configPrefix = "general";
     public const MODULE_ID = "CRT0_Mag2Whats";
     public function __construct(
         protected ScopeConfigInterface $scopeConfig,
-        protected GatewayFactoryFactory $gatewayFactory
+        protected GatewayFactoryFactory $gatewayFactory,
+        protected EncryptorInterface $encryptor
     )
     {
-    }    
+    }
     /**
      * isActiveModule
      *
@@ -31,7 +33,7 @@ class Config
      */
     public function isActiveModule(): bool{
         return (bool) $this->getData("enable");
-    }    
+    }
     /**
      * getCurrentGateway
      *
@@ -40,7 +42,7 @@ class Config
     public function getCurrentGateway(): string
     {
         return $this->getData("gateway");
-    }    
+    }
     /**
      * getData
      *
@@ -49,7 +51,7 @@ class Config
      */
     protected function getData(string $paramName){
         return $this->scopeConfig->getValue(sprintf("mag2whats/%s/%s", $this->configPrefix, $paramName));
-    }    
+    }
     /**
      * getGatewayConfig
      *
