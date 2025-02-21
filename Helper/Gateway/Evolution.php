@@ -14,9 +14,9 @@
 namespace CRT0\Mag2Whats\Helper\Gateway;
 use CRT0\Mag2Whats\Api\Data\GatewayDataInterface;
 use CRT0\Mag2Whats\Helper\Config;
-class Evolution  extends Config implements GatewayDataInterface
+class Evolution extends Config implements GatewayDataInterface
 {
-    protected $configPrefix = "gateway";    
+    protected $configPrefix = "gateway";
     /**
      * getConfig
      *
@@ -26,7 +26,7 @@ class Evolution  extends Config implements GatewayDataInterface
     {
         return [
             'base_url' => $this->getData("evolution_baseurl"),
-            'token' => $this->getData("evolution_token"),
+            'token' => $this->encryptor->decrypt($this->getData("evolution_token")),
             'instance' => $this->getData("evolution_instance")
         ];
     }

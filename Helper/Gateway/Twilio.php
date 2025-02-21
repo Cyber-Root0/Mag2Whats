@@ -16,7 +16,7 @@ use CRT0\Mag2Whats\Api\Data\GatewayDataInterface;
 use CRT0\Mag2Whats\Helper\Config;
 class Twilio  extends Config implements GatewayDataInterface
 {
-    protected $configPrefix = "gateway";    
+    protected $configPrefix = "gateway";
     /**
      * getConfig
      *
@@ -26,7 +26,7 @@ class Twilio  extends Config implements GatewayDataInterface
     {
         return [
             'sid' => $this->getData("twilio_sid"),
-            'token' => $this->getData("twilio_token")
+            'token' => $this->encryptor->decrypt($this->getData("twilio_token"))
         ];
     }
 }
