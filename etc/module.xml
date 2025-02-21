@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- 
+<!--
     Copyright (c) 2025 Bruno Alves. All rights reserved.
 
     This file is part of the CRT0 Mag2Whats module for Magento 2.
@@ -16,6 +16,7 @@
         <sequence>
             <module name="Magento_Backend"/>
             <module name="Magento_Ui"/>
+            <module name="CRT0_LockPanel"/>
         </sequence>
     </module>
 </config>
