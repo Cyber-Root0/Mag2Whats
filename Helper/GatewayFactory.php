@@ -12,35 +12,37 @@
  * @since     2025
  */
 namespace CRT0\Mag2Whats\Helper;
-use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\Exception\NotFoundException;
 use CRT0\Mag2Whats\Api\Data\GatewayDataInterface;
-use CRT0\Mag2Whats\Helper\Gateway\Evolution;
-use CRT0\Mag2Whats\Helper\Gateway\Twillio;
+
 class GatewayFactory
-{    
+{
+
+
     /**
      * __construct
      *
      * @return void
      */
     public function __construct(
-        protected ObjectManagerInterface $objectManager
+        private array $availableGateways
     )
     {
-    }    
+    }
+
     /**
      * create
      *
      * @param string $gatewayCode
      * @return GatewayDataInterface
+     * @throws NotFoundException
      */
     public function create($gatewayCode): GatewayDataInterface
     {
-        $gatewayClass = match ($gatewayCode) {
-            'evolution.api' => Evolution::class,
-            'twilio.gateway' => Twillio::class,
-            default => ''
-        };
-        return $this->objectManager->create($gatewayClass);
+        if (!isset($this->availableGateways[$gatewayCode])) {
+            throw new NotFoundException(__('Gateway code not found: %1', $gatewayCode));
+        }
+
+        return $this->availableGateways[$gatewayCode]->create();
     }
 }
