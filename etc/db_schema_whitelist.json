@@ -1,0 +1,19 @@
+{
+    "mag2whats_message": {
+        "column": {
+            "id": true,
+            "status": true,
+            "message": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MAG2WHATS_MESSAGE_ID": true,
+            "MAG2WHATS_MESSAGE_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

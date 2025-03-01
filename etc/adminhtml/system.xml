@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
-    <!-- 
+    <!--
     Copyright (c) 2025 Bruno Alves. All rights reserved.
 
     This file is part of the CRT0 Mag2Whats module for Magento 2.
@@ -43,8 +43,9 @@
                         <field id="mag2whats/general/gateway">evolution.api</field>
                     </depends>
                 </field>
-                <field id="evolution_token" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="evolution_token" translate="label" type="obscure" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Enter the Evolution API Token</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                     <validate>required-entry</validate>
                     <depends>
                         <field id="mag2whats/general/gateway">evolution.api</field>
@@ -66,8 +67,9 @@
                         <field id="mag2whats/general/gateway">twilio.gateway</field>
                     </depends>
                 </field>
-                <field id="twilio_token" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="twilio_token" translate="label" type="obscure" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Enter the Account Token</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                     <validate>required-entry</validate>
                     <depends>
                         <field id="mag2whats/general/gateway">twilio.gateway</field>
